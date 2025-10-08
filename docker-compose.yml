@@ -1,0 +1,45 @@
+services:
+  db:
+    image: mariadb
+    container_name: ffs_mariadb # コンテナ名を指定
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: '' # Password を設定
+    volumes:
+      - ./db_data:/var/lib/mysql
+      - ./main.sql:/docker-entrypoint-initdb.d/main.sql
+    ports:
+      - '3306:3306'
+    networks:
+      - pma_net
+    healthcheck:
+      test:
+        [
+          'CMD-SHELL',
+          'mariadb-admin ping -h localhost -u root -p$$MYSQL_ROOT_PASSWORD',
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: ffs_phpmyadmin # コンテナ名を指定
+    restart: always
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      MYSQL_ROOT_PASSWORD: '' # Password を設定
+      PMA_COOKIE_SAMESITE: 'Lax'
+    ports:
+      - '8080:80'
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - pma_net
+
+networks:
+  pma_net:
+    driver: bridge
