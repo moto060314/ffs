@@ -34,11 +34,20 @@ pip install -r requirements.txt
 uvicorn app:asgi_app --reload
 ```
 
+or
+
+````sh
+# Windows
+py main.py
+# Mac
+python3 main.py
+```
+
 ## Connect
 
 ```sh
 http://localhost:8000
-```
+````
 
 # Docker Compose の使い方
 

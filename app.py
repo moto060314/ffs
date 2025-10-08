@@ -64,3 +64,10 @@ async def connect(sid, environ):
 @sio.event
 async def disconnect(sid):
     print("Client disconnected:", sid)
+
+def main():
+    import uvicorn
+    uvicorn.run(asgi_app, host="localhost", port=3000)
+
+if __name__ == "__main__":
+    main()
