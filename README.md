@@ -1,3 +1,45 @@
+# FFS SetUp
+
+## pip install
+
+### Windows
+
+```sh
+py -m venv .venv
+```
+
+```sh
+.\.venv\Scripts\activate
+```
+
+### Mac
+
+```sh
+python3 -m venv .venv
+```
+
+```sh
+. ./.venv/bin/activate
+```
+
+## Library Install
+
+```sh
+pip install -r requirements.txt
+```
+
+## Program Start ※この前に docker compose のセットアップを終わらせてください。
+
+```sh
+uvicorn app:asgi_app --reload
+```
+
+## Connect
+
+```sh
+http://localhost:8000
+```
+
 # Docker Compose の使い方
 
 ## docker-compose.yml setting
@@ -41,46 +83,4 @@ query.sql を貼り付け。
 
 ```sh
 quit
-```
-
-# FFS SetUp
-
-## pip install
-
-### Windows
-
-```sh
-py -m venv .venv
-```
-
-```sh
-.\.venv\Scripts\activate
-```
-
-### Mac
-
-```sh
-python3 -m venv .venv
-```
-
-```sh
-. ./.venv/bin/activate
-```
-
-## Library Install
-
-```sh
-pip install -r requirements.txt
-```
-
-## Program Start
-
-```sh
-uvicorn app:asgi_app --reload
-```
-
-## Connect
-
-```sh
-http://localhost:8000
 ```
